@@ -1,1 +1,1 @@
-Prototype of a program I made to help me learn russian
+### 2. russianLang - These is very much a minimum viable product program. I am writing this to help me learn Russian. 😈
