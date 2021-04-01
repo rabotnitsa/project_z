@@ -2,7 +2,7 @@
 '''
 Program: mantra_qc_tool
 Author: Taos Myers
-Layout  Mantra QC Render Tool
+Mantra Quality Control Rendering Tool
 '''
 import hou
 import sys
