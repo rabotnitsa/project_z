@@ -23,7 +23,7 @@ class bcolors:
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 
-#Load .hip File
+# Load .hip File
 hou.hipFile.clear(suppress_save_prompt=False)
 source_file = "path/to/*.hip"
 hou.hipFile.merge(source_file, node_pattern="*", overwrite_on_conflict=False, ignore_load_warnings=True)
@@ -31,14 +31,14 @@ hou.session.houdiniSessionManager.update_production_variables(override=True)
 hou.session.houdiniSessionManager.update_frame_variables(override=True)
 print bcolors.OKBLUE + "Successfully loaded: " + bcolors.ENDC + source_file
 
-#Save the .hip file
+# Save the .hip file
 def save_file():
 	Job = os.getenv('M_JOB')
 	Shot = os.getenv('M_SHOT')
 	Seq = os.getenv('M_SEQUENCE')
 	Task = os.getenv('M_TASK')
 
-#Set the path to the save directory. Check if dir exists. If not, create it
+# Set the path to the save directory. Check if dir exists. If not, create it
 mypath = os.path.join("/jobs/" + Job + "/" + Seq + "/" + Shot + "/TASKS/layout/houdini/layoutQCRender/")
 save_file()
 print bcolors.OKBLUE + "Save Directory is: " + bcolors.ENDC + mypath
@@ -54,7 +54,7 @@ myfirstfile = os.path.join("/jobs/" + Job + "/" + Seq + "/" + Shot + "/TASKS/lay
 /" + Shot + "_layoutQCRender_v0001.hip")
 hou.session.houdiniSessionManager.update_frame_variables(override=True)
 
-#Look through hip dir and save if empty
+# Look through hip dir and save if empty
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 if(len(onlyfiles)<1):
 	print "No hip files exist \n"
@@ -63,11 +63,11 @@ if(len(onlyfiles)<1):
 	hou.hipFile.save(myfirstfile)
 	print bcolors.OKBLUE + "Saving hip file to: " + bcolors.ENDC + myfirstfile
 
-#Add a camera and set work_in/out
+# Add a camera and set work_in/out
 add_camera = hou.node("/obj")
 mycam = add_camera.createNode('ms::alembic_shotcam::1.0')
 
-#Get highest Cam version
+# Get highest Cam version
 camDir = os.path.join("/jobs/" + Job + "/" + Seq + "/" + Shot + "/PRODUCTS/instances/shotcam1_main
 /default/")
 i = 0
@@ -81,7 +81,7 @@ for (path, dirs, files) in os.walk(camDir):
 		fullCamPath = startPath + endPath
 		print fullCamPath
 
-#Get URI
+# Get URI
 av = asset.search_asset_versions(path=fullCamPath)
 for i in av:
 	URI = i.asset_uri
@@ -92,7 +92,7 @@ for i in av:
 	URI += uri_number
 	print "Full URI is " + URI
 
-#Set fileName attr and URI
+# Set fileName attr and URI
 mycam.parm('fileName').set(str(fullCamPath))
 mycam.parm('camuri').set(str(URI))
 mycam.parm('camera').set(str(URI))
@@ -105,27 +105,27 @@ mycam.parm('camera').pressButton()
 mycam.parm('resx').set('3414')
 mycam.parm('resy').set('2198')
 
-#Iterate through files in the dir and split out the version numbers
+# Iterate through files in the dir and split out the version numbers
 onlyfiles = sorted(onlyfiles)
 print(onlyfiles)
 mysplit = re.findall("_v" + '(\d+)', onlyfiles[-1])
 print("\n")
 
-#Find the highest file number in the list of files in the save dir
+# Find the highest file number in the list of files in the save dir
 highest = mysplit[-1]
 print bcolors.OKBLUE + "Highest file number is: " + bcolors.ENDC
 print highest
 print "\n"
 
-#If highest file in dir is higher than v0001, increment by one
+# If highest file in dir is higher than v0001, increment by one
 intNumber = 0001
 if highest > intNumber:
 	intNumber = intHighest + 0001
 
-#Convert 'intNumber' to a string and assign to a new variable
+# Convert 'intNumber' to a string and assign to a new variable
 number = "%04d" % (intNumber)
 
-#Save incremented file to disk
+# Save incremented file to disk
 filetosave = os.path.join("/jobs/" + Job + "/" + Seq + "/" + Shot + "/TASKS/layout/houdini
 /layoutQCRender/" + Shot + "_layoutQCRender_v" + number + ".hip")
 print bcolors.OKBLUE + "Saving v" + number + " hip file to: " + bcolors.ENDC + filetosave + "\n"
@@ -133,11 +133,11 @@ hou.session.houdiniSessionManager.update_production_variables(override=True)
 hou.session.houdiniSessionManager.update_frame_variables(override=True)
 hou.hipFile.save(filetosave)
 
-#Add a camera and set work_in/out
+# Add a camera and set work_in/out
 user_camera  = hou.node("/obj")
 mycamb = user_camera.createNode('ms::alembic_shotcam::1.0')
 
-#Get highest Cam version
+# Get highest Cam version
 camDir = os.path.join("/jobs/" + Job + "/" + Seq + "/" + Shot + "/PRODUCTS/instances/shotcam1_main/default/")
 i = 0
 for (path, dirs, files) in os.walk(camDir):
@@ -150,7 +150,7 @@ for (path, dirs, files) in os.walk(camDir):
 		fullCamPath = startPath + endPath
 		print fullCamPath
 
-#Get URI
+# Get URI
 av = asset.search_asset_versions(path=fullCamPath)
 for i in av:
 	URI = i.asset_uri
@@ -161,7 +161,7 @@ for i in av:
 	URI += uri_number
 	print "Full URI is " + URI
 
-#Save .hip file
+# Save .hip file
 hou.hipFile.save(filetosave)
 print bcolors.OKBLUE + "Updated vars and saving hip file to: " + bcolors.ENDC + filetosave + "\n"
 save_file()
