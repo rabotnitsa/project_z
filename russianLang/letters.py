@@ -162,7 +162,7 @@ def rus_pron():
         print("Incorrect. It is pronounced strongly \n")
 
 
-#defining the output of Cyrillic letters for learning
+# defining the output of Cyrillic letters for learning
 def cyrillic_letters():
     print("\nCyrillic Letter : Pronunciation")
     print("-------------------------------")
