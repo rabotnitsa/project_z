@@ -7,7 +7,7 @@
 
 ## What will you find? 
 #### (3) different directories: 
-	1. Infosec - A collection of tools I wrote to learn more networks 
+	1. Infosec - A collection of tools I wrote to interact with networks 
 	2. russianLang - These is very much a minimum viable product program. I am writing this to help me learn Russian. 😈
 	3. VFX - Programs I wrote for Houdini as an FX TD 
 
