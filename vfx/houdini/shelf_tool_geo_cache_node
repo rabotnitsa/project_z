@@ -1,0 +1,52 @@
+'''
+Program: geo_cache
+Author: Taos Myers
+Shelf tool to automate single or multiiple caching nodes for an artist that will produce a working simulation chain
+'''
+import hou
+
+selectednodes= hou.selectedNodes()
+
+#create merge node
+mergeit = hou.node("/out")
+merge = mergeit.createNode("merge","Merge")
+
+#create depend/submit
+farm = hou.node("/out")
+farmsubmit = farm.createNode("ms::rw_depend::1","AfterJob")
+farmsubmit.setNextInput(merge)
+farmsubmit.setPosition(merge.position())
+farmsubmit.move([0,-2])
+
+for node in selectednodes:
+  node_name = node.name()
+  parent=node.node("..")
+  geocache=parent.createNode("ms::m_geo_cache::3.2","Element_{}".format(node_name ))
+  geocache.setParms({"category": "$OS"})
+  geocache.setNextInput(node)
+  geocache.setPosition(node.position())
+  geocache.move([0,-2])
+  new_color=hou.Color([.36,.36,.36])
+  geocache.setColor(new_color)
+
+#out null
+parent1=node.node("..")
+nullOut=parent1.createNode("null","OUT_{}".format(node_name))
+nullOut.setNextInput(geocache)
+nullOut.setPosition(geocache.position())
+nullOut.move([0,-2])
+
+#fetch
+fetchit = hou.node("/out")
+fetch = fetchit.createNode("ms::fetch_m_geo_cache::2.1", "Element_{}".format(node_name))
+fetch.move([0,2])
+new_color2=hou.Color([0.5,1,0])
+fetch.setColor(new_color2)
+
+#set path to the geo to be fetched
+fetch.parm("geocache_sop").set(geocache.path())
+merge.setNextInput(fetch)
+
+#set display flags
+nullOut.setDisplayFlag(True)
+nullOut.setRenderFlag(True)
