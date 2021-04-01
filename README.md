@@ -3,7 +3,7 @@
 # ⚡ WELCOME TO PROJECT Z ⚡
 
 ## What is Project Z? 
-#### A collection of python programs for a VFX studio to review. I just thought "Project Z" sounded cool, maybe Project Ultra would ahve been better.  
+#### A collection of python programs for a VFX studio to review. I just thought "Project Z" sounded cool, but not as cool as Project Ultra. However, this is not that type of project.   
 
 ## What will you find? 
 #### (3) different directories: 
