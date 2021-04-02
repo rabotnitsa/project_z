@@ -58,7 +58,7 @@ def rus_pron():
         else:
             print("No, the answer is {}".format(answer))
 
-#looping through cyr_alpha_questios dict
+# looping through cyr_alpha_questios dict
 def cyrillic_alphabet():
     for cyr_alpha_question, answer in cyr_alpha_questions.items():
         user_answer = input(cyr_alpha_question)
@@ -67,7 +67,7 @@ def cyrillic_alphabet():
         else:
             print("No, the answer is {}".format(answer))
 
-#looping through russian_lang_questions dict
+# looping through russian_lang_questions dict
 def rus_hist():
     for rus_hist_question, answer in rus_hist_questions.items():
         user_answer = input(rus_hist_question)
@@ -76,7 +76,7 @@ def rus_hist():
         else:
             print("No, the answer is {}".format(answer))
 
-#looping through rus_eng_questions dict
+# looping through rus_eng_questions dict
 def rus_and_eng():
 	for rus_eng_question, answer in rus_eng_questions.items():
 		user_answer = input(rus_eng_question)
