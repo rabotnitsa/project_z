@@ -1,5 +1,6 @@
 '''
 Program: Russian Language
+Author: Taos Myers
 Educational aid in learning Russian
 '''
 
@@ -12,8 +13,26 @@ rus_eng_questions = {
     "How many consonants are there? \n":"20",
     "How many semi-vowels are there? \n":"1",
     "How many vowels are there? \n":"10",
-    "How many phonetic signs are there? \n":"2"
+    "How many phonetic signs are there? \n":"2",
+    "Can Russian nouns be masculine, feminie or neuter? (y/n)]\n": "y",
+    "Are most mascluline nouns ending in a consonant or -й (y/n)\n": "y",
+    "Do most feminine nouns end in -а, -я, or -ия:  (y/n)\n": "y",
+    "Examples of masculine nouns: паспорт, багаж, турИст, трамвай (y)\n":"y",
+    "Examples of feminine nouns: вИза, TАня, декларАция (y)\n": "y"
     }
+
+# Congegations
+rus_congegation={
+	"What are the possessive pronouns for мой/моЯ\n":"my/mine",
+	"What are the possessive pronouns for ваш/вАша\n":"your/yours",
+	"What does мой/моЯ and ваш/вАша agree with when they refer to it?\n":"noun",
+	"Maculine ex. of мой/моЯ and ваш/вАша:\n\tмой паспорт\n\tмой багаж\n\tваш чемодАн\n\t(y)":"y",
+	"Feminine ex. of мой/моЯ and ваш/вАша:\n\tмоЯ вИза\n\tмоЯ сУмка\n\tвАша декларАция\n\t(y)":"y",
+	"What does он/онА mean?\n":"he/she",
+	"What does он/онА refer to?\n":"animals or people and 'it' for things",
+	"Привет! is the English equivelant of:\n":"hi",
+	"ЗдрАвствуйте and Привет are used how many times a day?\n": "once",
+	}
 
 # Russian semantics questions
 rus_hist_questions={
@@ -40,10 +59,90 @@ sov_rep_questions={
     "In what countries is the Cyrillic alphabet used today aside from Russia? (Hint: Four Countries)\n ":"Ukraine, Serbia, Belarus, Bulgaria"
     }
 
+# Russian words 
+russian_words={
+ 	"вы знАете":"you know",
+ 	"здесь":"here",
+ 	"метрО":"metro",
+ 	"стоЯнка таксИ":"taxi rank",
+ 	"там":"there",
+ 	"автОбус":"bus",
+ 	"в":"to/at",
+ 	"центр":"centre",
+ 	"таксИст":"taxi driver",
+ 	"кудА":"where to",
+ 	"на":"to/at",
+ 	"налЕво":"to the left",
+ 	"стАнция":"station",
+ 	"улИца":"street",
+ 	"прохОжий":"male passer-by",
+ 	"я не знАю":"I don't know",
+ 	"план":"plan/map",
+ 	"Ага":"Aha!",
+ 	"адрЕс":"address",
+ 	"дом":"house/block of flats",
+ 	"дЕсять":"ten",
+ 	"теАтр":"theatre",
+ 	"блИзко":"near",
+ 	"ИдИте":"Go!",
+ 	"прЯмо":"straight ahead",
+ 	"напрАво":"to the right",
+ 	"типИчный":"typical",
+ 	"англичАнин":"Englishman",
+ 	"прохОжая":"female passer-by",
+ 	"большОй теАтр":"the Bolshoy theatre",
+ 	"я не понимАю":"I don't understand",
+ 	"далекО":"far",
+ 	"есть":"there is",
+ 	"конЕчно":"of course",
+ 	"онО":"it",
+ 	"аэропОрт":"airport",
+ 	"ЗдрАвствуйте":"Hello!",
+ 	"Это":"this",
+ 	"МосквА":"Moscow",
+ 	"да":"yes",
+ 	"ИзвинИте":"Excuse (me)!",
+ 	"а":"and/but",
+ 	"Вы":"you",
+ 	"турИст":"male tourist",
+ 	"турИстка":"female tourist",
+ 	"бизнесмЕн":"businessman",
+ 	"журналИстка":"female journalist",
+ 	"офицЕр":"male officer",
+ 	"нет":"no",
+ 	"и":"and",
+ 	"я":"I",
+ 	"не":"not",
+ 	"ваш/вАша":"your/yours",
+ 	"пАспорт":"passport",
+ 	"пожАлуйста":"please(please take it)/you are welcome",
+ 	"хорошО":"good",
+ 	"вот":"here is",
+ 	"спасИбо":"thank you",
+ 	"чемодАн":"suitcase",
+ 	"где":"where",
+ 	"сУмка":"bag",
+ 	"билЕт":"ticket",
+ 	"декларАция":"declaration",
+ 	"что":"what",
+ 	"аспирИн":"asprin",
+ 	"сувенИр":"souvenir",
+ 	"жЕнщина":"woman",
+ 	}
+
+# looping through russian_words dict
+def rus_wrds():
+    for russian_word, answer in russian_words.items():
+        user_answer = input("Enter English word for " + russian_word +"\n\t>> ")
+        if user_answer == answer:
+            print("Correct!")
+        else:
+            print("No, the answer is {}".format(answer))
+
 # looping through sov_rep_questiosn dict
 def sov_rep():
     for sov_rep_question, answer in sov_rep_questions.items():
-        user_answer = input(sov_rep_question)
+        user_answer = input("\t"+sov_rep_question+"\t>> ")
         if user_answer == answer:
             print("Correct!")
         else:
@@ -52,7 +151,7 @@ def sov_rep():
 # looping through rus_pron_questions dict
 def rus_pron():
     for rus_pron_question, answer in rus_pron_questions.items():
-        user_answer = input(rus_pron_question)
+        user_answer = input("\t"+rus_pron_question+"\t>> ")
         if user_answer == answer:
             print("Correct!")
         else:
@@ -61,7 +160,7 @@ def rus_pron():
 # looping through cyr_alpha_questios dict
 def cyrillic_alphabet():
     for cyr_alpha_question, answer in cyr_alpha_questions.items():
-        user_answer = input(cyr_alpha_question)
+        user_answer = input("\t"+cyr_alpha_question+"\t>> ")
         if user_answer == answer:
             print("Correct!")
         else:
@@ -70,7 +169,7 @@ def cyrillic_alphabet():
 # looping through russian_lang_questions dict
 def rus_hist():
     for rus_hist_question, answer in rus_hist_questions.items():
-        user_answer = input(rus_hist_question)
+        user_answer = input("\t"+rus_hist_question+"\t>> ")
         if user_answer == answer:
             print("Correct!")
         else:
@@ -79,11 +178,21 @@ def rus_hist():
 # looping through rus_eng_questions dict
 def rus_and_eng():
 	for rus_eng_question, answer in rus_eng_questions.items():
-		user_answer = input(rus_eng_question)
+		user_answer = input("\t"+rus_eng_question+"\t>> ")
 		if user_answer == answer:
 			print("Correct!")
 		else:
 			print("No, the answer is {}".format(answer))
+
+# looping through rus_congegation dict
+def rus_cong():
+	for rus_cong, answer in rus_congegation.items():
+		user_answer = input("\t"+rus_cong+"\t>> ")
+		if user_answer == answer:
+			print("Correct!")
+		else:
+			print("No, the answer is {}".format(answer))
+
 
 # defining the Cyrillic Alphabet
 def cyrillic_letters():
@@ -127,7 +236,7 @@ def cyrillic_letters():
         print(key, ':', cyrillic_translit[key])
 
 if __name__ == '__main__':
-    module = input("Enter module to number practice: \n \n \t [1] Russian and English Comparison \n \t [2] Who created the Cyrillic Alphabet \n \t [3] Cyrillic Alphabet \n \t [4] Languages Spoken in Soviet Republic \n \t [5] Pronunciation \n \t [6] Cyrilic Alphabet + Pronunciation \n \t [q] Quit  \n>INPUT:$  ")
+    module = input("Enter module to number practice: \n \n \t [1] Russian and English Comparison \n \t [2] Who created the Cyrillic Alphabet \n \t [3] Cyrillic Alphabet \n \t [4] Languages Spoken in Soviet Republic \n \t [5] Pronunciation \n \t [6] Cyrilic Alphabet + Pronunciation \n \t [7] Russian Congegations \n \t [8] Russian Words \n \t [q] Quit  \n>INPUT:$  ")
     if module == "1":
         rus_and_eng()
     elif module == "2":
@@ -140,5 +249,9 @@ if __name__ == '__main__':
         rus_hist()
     elif module == "6":
         cyrillic_letters()
+    elif module == "7":
+    	rus_cong()
+    elif module == "8":
+    	rus_wrds()	
     elif module == "q":
         exit()
